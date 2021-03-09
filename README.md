@@ -2,6 +2,7 @@
 
 Source your brand new Discord server list with thousands of real Discord servers!
 
+### Output
 Data is scraped and formatted like this...
 ```json
 [
@@ -16,3 +17,6 @@ Data is scraped and formatted like this...
   }
 ]
 ```
+
+### Preview
+![Screenshot of program running](https://media.discordapp.net/attachments/488540747361026060/818973603797139566/unknown.png)
