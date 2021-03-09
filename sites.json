@@ -1,0 +1,8 @@
+[
+  {
+    "name": "disboard",
+    "baseUrl": "https://disboard.org",
+    "directoryIndexUrl": "BASE_URL/servers?sort=member_count",
+    "otherDirectoryPagesUrl": "BASE_URL/servers/%d?sort=member_count"
+  }
+]
