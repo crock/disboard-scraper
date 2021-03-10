@@ -15,11 +15,11 @@ with open('sites.json', 'r') as fp:
         print(site['name'])
         session = requests.Session()
         url = site['directoryIndexUrl'].replace('BASE_URL', site['baseUrl'])
-        if not os.path.exists(f"{site['name']}.html"):
+        if not os.path.exists(f"data/{site['name']}/raw/{site['name']}.html"):
             response = session.get(url)
-            with open(f"{site['name']}.html", "w") as fx:
+            with open(f"data/{site['name']}/raw/{site['name']}.html", "w") as fx:
                 fx.write(response.text)
-        with open(f"{site['name']}.html", "r") as fx:
+        with open(f"data/{site['name']}/raw/{site['name']}.html", "r") as fx:
             html = fx.read()
             soup = BeautifulSoup(html, 'html.parser')
             numPagesText = soup.find(class_="listing-summary").get_text() # Showing 1 - 24 of 926745 servers
@@ -68,17 +68,17 @@ with open('sites.json', 'r') as fp:
                         "description": serverDescription,
                     })
 
-                with open(f"{site['name']}-1.json", "w") as fx:
+                with open(f"data/{site['name']}/json/{site['name']}-1.json", "w") as fx:
                     fx.write(json.dumps(servers))
                 
                 for page in range(2, round(numPages)):
                     pageServers = []
                     url = site['otherDirectoryPagesUrl'].replace('BASE_URL', site['baseUrl']) % page
-                    if not os.path.exists(f"{site['name']}-{page}.html"):
+                    if not os.path.exists(f"data/{site['name']}/raw/{site['name']}-{page}.html"):
                         response = session.get(url)
-                        with open(f"{site['name']}-{page}.html", "w") as fx:
+                        with open(f"data/{site['name']}/raw/{site['name']}-{page}.html", "w") as fx:
                             fx.write(response.text)
-                    with open(f"{site['name']}-{page}.html", "r") as fx:
+                    with open(f"data/{site['name']}/raw/{site['name']}-{page}.html", "r") as fx:
                         html = fx.read()
                         soup = BeautifulSoup(html, 'html.parser')
                         numPagesText = soup.find(class_="listing-summary").get_text() # Showing 1 - 24 of 926745 servers
@@ -126,7 +126,7 @@ with open('sites.json', 'r') as fp:
                                     "description": serverDescription,
                                 })
 
-                    with open(f"{site['name']}-{page}.json", "w") as fx:
+                    with open(f"data/{site['name']}/json/{site['name']}-{page}.json", "w") as fx:
                         fx.write(json.dumps(pageServers))   
                         
                     
